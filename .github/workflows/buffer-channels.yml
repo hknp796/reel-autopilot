@@ -1,0 +1,17 @@
+name: List Buffer channels
+
+# Run once after setup to check the API key works and see your channel ids.
+on: workflow_dispatch
+
+jobs:
+  channels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: python -m reelgen.buffer channels | tee -a "$GITHUB_STEP_SUMMARY"

@@ -1,6 +1,7 @@
 name: Publish next Reel
 
-# Posts the oldest Reel marked "approved", then marks it "posted" in the repo.
+# Builds the oldest Reel marked "approved", serves the MP4 from this repo's GitHub Pages
+# site, has Buffer post it to Instagram, then marks it "posted" in the repo.
 # 13:15 UTC = 6:45 pm IST, Mon/Wed/Fri. GitHub can start scheduled runs a few minutes late.
 on:
   schedule:
@@ -18,37 +19,61 @@ on:
 concurrency: publish
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
-      - name: Build and post
+
+      - name: Build next approved Reel
+        id: build
         env:
-          IG_USER_ID: ${{ secrets.IG_USER_ID }}
-          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
-          IG_LOGIN: ${{ vars.IG_LOGIN || 'instagram' }}
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-          SUPABASE_BUCKET: ${{ vars.SUPABASE_BUCKET || 'reels' }}
+          REEL_ID: ${{ inputs.id }}
         shell: bash
         run: |
           args=()
-          [ -n "${{ inputs.id }}" ] && args+=(--id "${{ inputs.id }}")
-          [ "${{ inputs.dry_run }}" = "true" ] && args+=(--dry-run)
-          python -m reelgen.publish "${args[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+          [ -n "$REEL_ID" ] && args+=(--id "$REEL_ID")
+          python -m reelgen.publish build "${args[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Host the video on GitHub Pages
+        if: steps.build.outputs.reel != '' && inputs.dry_run != true
+        uses: actions/configure-pages@v5
+      - if: steps.build.outputs.reel != '' && inputs.dry_run != true
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out/site
+      - id: deploy
+        if: steps.build.outputs.reel != '' && inputs.dry_run != true
+        uses: actions/deploy-pages@v4
+
+      - name: Post with Buffer
+        if: steps.build.outputs.reel != '' && inputs.dry_run != true
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_CHANNEL_ID: ${{ vars.BUFFER_CHANNEL_ID }}
+          REEL_ID: ${{ steps.build.outputs.reel }}
+          PAGE_URL: ${{ steps.deploy.outputs.page_url }}
+        shell: bash
+        run: python -m reelgen.publish post --id "$REEL_ID" --base-url "$PAGE_URL" | tee -a "$GITHUB_STEP_SUMMARY"
+
       - name: Record what was posted
+        if: always()
         shell: bash
         run: |
           if ! git diff --quiet -- reels/; then
             git config user.name "reel-autopilot"
             git config user.email "reel-autopilot@users.noreply.github.com"
             git add reels/
-            git commit -m "Posted $(git diff --cached --name-only | xargs -n1 basename | sed 's/.json//' | paste -sd, -)"
+            git commit -m "Publish: $(git diff --cached --name-only | xargs -n1 basename | sed 's/.json//' | paste -sd, -)"
             git push
           fi
+
       - uses: actions/upload-artifact@v4
         if: always()
         with:
