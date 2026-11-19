@@ -1,10 +1,10 @@
 # reel-autopilot
 
-Turns short JSON scripts into 9:16 Instagram Reels (animated text, mock Google search, AI voiceover) and posts them to Instagram on a schedule with GitHub Actions.
+Turns short JSON scripts into 9:16 Instagram Reels (animated text, mock Google search, AI voiceover) and posts them to Instagram on a schedule. GitHub Actions renders each Reel, GitHub Pages hosts the MP4, and Buffer publishes it.
 
 ```
 reels/*.json  ──push──▶  Preview workflow renders MP4s  ──you watch, set "approved"──▶
-Publish workflow (Mon/Wed/Fri 6:45 pm IST) posts the next approved Reel and marks it "posted"
+Publish workflow (Mon/Wed/Fri 6:45 pm IST): build → GitHub Pages → Buffer → Instagram → mark "posted"
 ```
 
 Nothing is posted unless you've set its status to `"approved"`.
@@ -16,50 +16,40 @@ Nothing is posted unless you've set its status to `"approved"`.
 3. **Approve**: change `"status": "draft"` to `"status": "approved"` and push.
 4. **It posts** on the next scheduled run, oldest file name first. The file is updated to `"posted"` with the Instagram link.
 
+Statuses: `draft` → `approved` → `posted`. Two others can appear: `submitted` (Buffer accepted it but hadn't finished publishing when the job stopped waiting; check Buffer) and `failed` (Buffer reported an error, saved in the file's `error` field; fix it and set `approved` again to retry).
+
 To post right away: **Actions → Publish next Reel → Run workflow** (optionally with a Reel id, or tick *dry run* to only build).
 
 To change the days or time, edit the `cron` line in `.github/workflows/publish.yml` (it's in UTC; IST = UTC + 5:30).
 
-## One-time setup
+## One-time setup (about 10 minutes)
 
 ### 1. Instagram professional account
-In the Instagram app: **Settings → Account type and tools → Switch to professional account**. Creator or Business both work. Personal accounts can't post through the API.
+In the Instagram app: **Settings → Account type and tools → Switch to professional account**. Creator or Business both work.
 
-### 2. Meta app and access token (Instagram Login, no Facebook Page needed)
-1. Go to <https://developers.facebook.com/apps> → **Create app**. Pick the Instagram use case (managing messages and content on Instagram).
-2. In the app dashboard open **Instagram → API setup with Instagram login**.
-3. Under **Generate access tokens**, click **Add account** and log in with your Instagram account. If asked, accept the tester invite in Instagram (**Settings → Website permissions → Apps and websites → Tester invites**).
-4. Copy the **access token** and the **Instagram user ID** shown next to your account.
+### 2. Buffer
+1. Sign up at <https://buffer.com> (the free plan includes one API key) and connect your Instagram account as a channel.
+2. **Settings → API** → create a personal API key and copy it.
 
-The app can stay in Development mode: it only needs to post to your own account, which has a role on the app. App Review is only needed to post for other people.
+### 3. GitHub Pages
+Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**. That's all: the publish job deploys each Reel's MP4 to `https://<you>.github.io/reel-autopilot/` just before posting, which gives Buffer the direct public link it needs. Pages is free for public repos; a private repo needs a paid GitHub plan for this.
 
-### 3. Supabase bucket (temporary public link for each video)
-With Instagram Login, Meta takes videos by public URL, so each Reel is uploaded to a public bucket, fetched by Instagram, then deleted.
-1. Create a free project at <https://supabase.com>.
-2. **Storage → New bucket** → name it `reels`, tick **Public bucket**.
-3. **Project Settings → API**: copy the **Project URL** and the **service_role** key.
+### 4. GitHub secret
+Repo **Settings → Secrets and variables → Actions → New repository secret**: `BUFFER_API_KEY` = your Buffer key.
 
-### 4. GitHub secrets
-Repo **Settings → Secrets and variables → Actions → New repository secret**:
+If your Buffer account has more than one Instagram channel, also add a repository **variable** `BUFFER_CHANNEL_ID` (get the id from the next step). With one Instagram channel it's found automatically.
 
-| Secret | Value |
-|---|---|
-| `IG_USER_ID` | Instagram user ID from step 2 |
-| `IG_ACCESS_TOKEN` | access token from step 2 |
-| `SUPABASE_URL` | Supabase Project URL |
-| `SUPABASE_SERVICE_KEY` | Supabase service_role key |
-| `GH_PAT` | fine-grained GitHub token for this repo only, with **Secrets: Read and write** (lets the token-renewal job save the renewed token) |
-
-Then run **Actions → Publish next Reel → Run workflow** with *dry run* ticked to check the build, and **Renew Instagram token → Run workflow** to check the token.
-
-### Alternative: Facebook Login (no Supabase)
-If your Instagram account is linked to a Facebook Page, you can use a Page access token instead. Videos are then uploaded straight to Meta, so Supabase isn't needed. Add a repository **variable** `IG_LOGIN` = `facebook`, set `IG_USER_ID` to the Instagram business account ID and `IG_ACCESS_TOKEN` to the Page token. Page tokens made from a long-lived user token don't expire, so the renewal job switches itself off.
+### 5. Check it
+1. **Actions → List Buffer channels → Run workflow**: should list your Instagram channel. This confirms the key works.
+2. **Actions → Publish next Reel → Run workflow** with *dry run* ticked: confirms the build works.
+3. Approve one Reel and run **Publish next Reel** without dry run. It should appear on Instagram within a few minutes.
 
 ## Reel format
 
 ```jsonc
 {
   "status": "draft",               // draft → approved → posted
+  "cover_ms": 2600,                // optional: frame used as the Reel's cover, in ms
   "voice": "am_michael",           // Kokoro voice (am_adam, bm_george, af_heart, ...)
   "speed": 1.08,
   "caption": "Instagram caption with #hashtags",
@@ -92,6 +82,8 @@ The voice model (~350 MB) downloads into `models/` on first use.
 
 ## Notes
 
-- Instagram allows 100 API posts per 24 hours; this posts at most one per run.
+- Posting goes through Buffer's API (`reelgen/buffer.py`). Buffer accepts a post instantly but fetches and publishes the video afterwards, so the job waits until Buffer reports it `sent` before marking it posted.
+- Buffer's free plan allows 600 API requests a day; each post uses about 10.
 - Music from Instagram's library can't be added through the API. The voiceover counts as original audio.
+- Each publish run replaces the Pages site with only the current Reel's MP4, so the site never fills up.
 - Fonts: Inter Display, SIL Open Font License (`assets/fonts/OFL.txt`). Voice: [Kokoro](https://github.com/thewh1teagle/kokoro-onnx), Apache 2.0.
