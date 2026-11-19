@@ -1,0 +1,88 @@
+{
+  "status": "draft",
+  "voice": "am_michael",
+  "speed": 1.08,
+  "caption": "Your Instagram page is great. But when people search on Google, a website is what shows up. 🔎\n\nI build SEO-ready websites for local businesses: your own spot on Google, open 24/7.\n\nDM \"WEBSITE\" and let's build yours.\n\n#websitedesign #localbusiness #seo #smallbusinessindia #webdeveloper #kerala",
+  "scenes": [
+    {
+      "type": "statement",
+      "eyebrow": "ONLY ON INSTAGRAM?",
+      "lines": [
+        "Your Instagram",
+        "page is great."
+      ],
+      "accent": [
+        "But it's not",
+        "a website."
+      ],
+      "say": [
+        "Your Instagram page is great.",
+        "But it's not a website."
+      ]
+    },
+    {
+      "type": "search",
+      "query": "bakery in kochi",
+      "results": [
+        [
+          "Sugar & Crumb",
+          "Open now  ·  1.5 km",
+          "★ 4.7"
+        ],
+        [
+          "The Oven Story",
+          "Open now  ·  2.3 km",
+          "★ 4.6"
+        ],
+        [
+          "Daily Bread Co.",
+          "Closes 9 pm  ·  3.1 km",
+          "★ 4.5"
+        ]
+      ],
+      "you": {
+        "name": "Your Bakery",
+        "sub": "Instagram only  ·  not listed",
+        "rank": 19
+      },
+      "punch": "They find the ones with websites.",
+      "say": [
+        "Someone searches: bakery in Kochi.",
+        "They find the ones with websites."
+      ]
+    },
+    {
+      "type": "list",
+      "kind": "good",
+      "title": [
+        "A website gives you"
+      ],
+      "items": [
+        "Your own spot on Google",
+        "Open 24/7, even while you sleep",
+        "Instant trust with new customers",
+        "One link: menu, prices, contact"
+      ],
+      "say": [
+        "A website gives you:",
+        "your own spot on Google,",
+        "a shop that's open 24/7,",
+        "instant trust with new customers,",
+        "and one link for your menu, prices and contact."
+      ]
+    },
+    {
+      "type": "cta",
+      "lines": [
+        "Let's build",
+        "yours."
+      ],
+      "button": "DM me “WEBSITE”",
+      "sub": "SEO websites for local businesses",
+      "say": [
+        "Let's build yours.",
+        "DM me the word: website."
+      ]
+    }
+  ]
+}

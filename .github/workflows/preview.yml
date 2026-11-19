@@ -1,0 +1,45 @@
+name: Preview Reels
+
+# Renders every Reel you add or change in reels/ (anything not yet posted) and attaches
+# the MP4s to the run so you can watch them before approving.
+on:
+  push:
+    paths: ["reels/*.json"]
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "Reel id to render (blank = every unposted Reel)"
+        required: false
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+      - name: Render
+        shell: bash
+        run: |
+          if [ -n "${{ inputs.id }}" ]; then
+            files="reels/${{ inputs.id }}.json"
+          elif [ "${{ github.event_name }}" = "push" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+            files=$(git diff --name-only --diff-filter=AM "${{ github.event.before }}" "${{ github.sha }}" -- 'reels/*.json')
+          else
+            files=$(ls reels/*.json)
+          fi
+          built=0
+          for f in $files; do
+            status=$(python -c "import json,sys; print(json.load(open(sys.argv[1])).get('status'))" "$f")
+            if [ "$status" = "posted" ]; then echo "skip $f (already posted)"; continue; fi
+            python -m reelgen.build "$f"
+            built=$((built+1))
+          done
+          echo "Rendered $built Reel(s)." >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reel-previews
+          path: out/*.mp4
+          if-no-files-found: ignore
+          retention-days: 14

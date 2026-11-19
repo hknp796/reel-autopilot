@@ -1,0 +1,78 @@
+{
+  "status": "draft",
+  "voice": "am_michael",
+  "speed": 1.08,
+  "caption": "A slow website quietly sends your customers to competitors. 🐢➡️🏃\n\nI build fast, modern websites that load in a flash, work on every phone and are set up to rank on Google.\n\nDM \"FAST\" to get started.\n\n#websitedesign #localbusiness #seo #smallbusinessindia #webdeveloper #kerala",
+  "scenes": [
+    {
+      "type": "statement",
+      "eyebrow": "YOUR WEBSITE",
+      "lines": [
+        "Slow website?",
+        "Customers",
+        "won't wait."
+      ],
+      "accent": [
+        "They leave."
+      ],
+      "say": [
+        "Got a slow website? Customers won't wait.",
+        "They just leave."
+      ]
+    },
+    {
+      "type": "list",
+      "kind": "bad",
+      "title": [
+        "Sound familiar?"
+      ],
+      "items": [
+        "Takes ages to load",
+        "Broken on phones",
+        "Looks outdated"
+      ],
+      "say": [
+        "Sound familiar?",
+        "Takes ages to load.",
+        "Broken on phones.",
+        "Looks outdated."
+      ]
+    },
+    {
+      "type": "list",
+      "kind": "good",
+      "title": [
+        "I fix that with"
+      ],
+      "accent": [
+        "fast, modern sites."
+      ],
+      "items": [
+        "Loads in a flash",
+        "Perfect on every phone",
+        "Clean, modern design",
+        "Set up to rank on Google"
+      ],
+      "say": [
+        "I fix that, with fast, modern websites.",
+        "Loads in a flash.",
+        "Perfect on every phone.",
+        "A clean, modern design.",
+        "And set up to rank on Google."
+      ]
+    },
+    {
+      "type": "cta",
+      "lines": [
+        "Want a faster",
+        "website?"
+      ],
+      "button": "DM me “FAST”",
+      "sub": "SEO websites for local businesses",
+      "say": [
+        "Want a faster website?",
+        "DM me the word: fast."
+      ]
+    }
+  ]
+}

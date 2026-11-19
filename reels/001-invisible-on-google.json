@@ -1,0 +1,148 @@
+{
+  "status": "draft",
+  "voice": "am_michael",
+  "speed": 1.08,
+  "caption": "Your customers are Googling you right now. Are you showing up? 🔍\n\nI build fast, SEO-ready websites that help local businesses get found and get calls.\n\nDM \"WEBSITE\" and let's talk.\n\n#websitedesign #localbusiness #seo #smallbusinessindia #webdeveloper #kerala",
+  "scenes": [
+    {
+      "type": "statement",
+      "eyebrow": "LOCAL BUSINESS OWNERS",
+      "lines": [
+        "Your customers",
+        "are searching",
+        "right now."
+      ],
+      "accent": [
+        "Can they find you?"
+      ],
+      "say": [
+        "Your customers are searching, right now.",
+        "Can they find you?"
+      ]
+    },
+    {
+      "type": "search",
+      "query": "best dentist near me",
+      "results": [
+        [
+          "Smile Dental Care",
+          "Open now  ·  2.1 km",
+          "★ 4.8"
+        ],
+        [
+          "City Dental Clinic",
+          "Open now  ·  3.4 km",
+          "★ 4.6"
+        ],
+        [
+          "BrightTeeth Studio",
+          "Closes 8 pm  ·  4 km",
+          "★ 4.5"
+        ]
+      ],
+      "you": {
+        "name": "Your Business",
+        "sub": "Page 3  ·  nobody scrolls here",
+        "rank": 27
+      },
+      "punch": "...and you're not on the list.",
+      "say": [
+        "They search: best dentist near me.",
+        "And you're not on the list."
+      ]
+    },
+    {
+      "type": "list",
+      "kind": "bad",
+      "title": [
+        "Sound familiar?"
+      ],
+      "items": [
+        "No website at all",
+        "Slow, outdated site",
+        "Zero calls from Google"
+      ],
+      "say": [
+        "Sound familiar?",
+        "No website.",
+        "A slow, outdated site.",
+        "Zero calls from Google."
+      ]
+    },
+    {
+      "type": "list",
+      "kind": "good",
+      "title": [
+        "I build websites",
+        "that rank"
+      ],
+      "accent": [
+        "& bring calls."
+      ],
+      "items": [
+        "SEO-ready from day one",
+        "Lightning-fast loading",
+        "Mobile-first design",
+        "Built to turn visits into calls"
+      ],
+      "say": [
+        "I build websites that rank, and bring calls.",
+        "SEO-ready.",
+        "Lightning fast.",
+        "Mobile-first.",
+        "Built to turn visits into calls."
+      ]
+    },
+    {
+      "type": "rank_up",
+      "query": "best dentist near me",
+      "results": [
+        [
+          "Smile Dental Care",
+          "Open now  ·  2.1 km",
+          "★ 4.8"
+        ],
+        [
+          "City Dental Clinic",
+          "Open now  ·  3.4 km",
+          "★ 4.6"
+        ],
+        [
+          "BrightTeeth Studio",
+          "Closes 8 pm  ·  4 km",
+          "★ 4.5"
+        ]
+      ],
+      "you": {
+        "name": "Your Business",
+        "sub": "Open now  ·  Website  ·  Call",
+        "stars": "★ 4.9",
+        "from_rank": 27
+      },
+      "lines": [
+        "Get found."
+      ],
+      "accent": [
+        "Get customers."
+      ],
+      "say": [
+        "",
+        "Get found.",
+        "Get customers."
+      ]
+    },
+    {
+      "type": "cta",
+      "lines": [
+        "Ready to grow",
+        "your business?"
+      ],
+      "button": "DM me “WEBSITE”",
+      "sub": "SEO websites for local businesses",
+      "say": [
+        "Ready to grow your business?",
+        "DM me the word: website."
+      ]
+    }
+  ]
+}

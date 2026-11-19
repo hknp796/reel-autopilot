@@ -1,0 +1,20 @@
+name: Set up Reel builder
+description: Python, ffmpeg, dependencies and the cached Kokoro voice model
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+        cache: pip
+    - name: Install ffmpeg
+      shell: bash
+      run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+    - name: Install Python packages
+      shell: bash
+      run: pip install -r requirements.txt
+    - name: Cache voice model
+      uses: actions/cache@v4
+      with:
+        path: models
+        key: kokoro-v1.0

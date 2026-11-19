@@ -1,0 +1,69 @@
+{
+  "status": "draft",
+  "voice": "am_michael",
+  "speed": 1.08,
+  "caption": "3 signs your website is costing you customers 👇\n\n1. It's not mobile-friendly\n2. There's no clear \"Call now\" button\n3. Nobody can find it on Google\n\nI fix all three. DM \"CHECK\" and I'll take a look at yours.\n\n#websitedesign #localbusiness #seo #smallbusinessindia #webdeveloper #kerala",
+  "scenes": [
+    {
+      "type": "statement",
+      "eyebrow": "3 SIGNS",
+      "lines": [
+        "Your website is",
+        "costing you",
+        "customers."
+      ],
+      "say": [
+        "Three signs your website is costing you customers."
+      ]
+    },
+    {
+      "type": "list",
+      "kind": "bad",
+      "title": [
+        "Watch for these"
+      ],
+      "items": [
+        "Not mobile-friendly",
+        "No clear “Call now” button",
+        "Can't be found on Google"
+      ],
+      "say": [
+        "",
+        "One: it's not mobile friendly.",
+        "Two: there's no clear call-now button.",
+        "Three: nobody can find it on Google."
+      ]
+    },
+    {
+      "type": "list",
+      "kind": "good",
+      "title": [
+        "I fix all three."
+      ],
+      "items": [
+        "Mobile-first design",
+        "One-tap call & WhatsApp",
+        "SEO built in from day one"
+      ],
+      "say": [
+        "I fix all three.",
+        "Mobile-first design.",
+        "One-tap call and WhatsApp buttons.",
+        "And SEO, built in from day one."
+      ]
+    },
+    {
+      "type": "cta",
+      "lines": [
+        "Is your site",
+        "costing you?"
+      ],
+      "button": "DM me “CHECK”",
+      "sub": "SEO websites for local businesses",
+      "say": [
+        "Is your website costing you customers?",
+        "DM me the word: check."
+      ]
+    }
+  ]
+}

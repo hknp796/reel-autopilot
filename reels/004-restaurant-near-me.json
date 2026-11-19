@@ -1,0 +1,122 @@
+{
+  "status": "draft",
+  "voice": "am_michael",
+  "speed": 1.08,
+  "caption": "Hungry customers search before they walk in. Is your restaurant showing up? 🍛\n\nI build fast, SEO-ready restaurant websites: menus Google can read, click-to-call and directions.\n\nDM \"MENU\" to get started.\n\n#websitedesign #localbusiness #seo #smallbusinessindia #webdeveloper #kerala #restaurantmarketing",
+  "scenes": [
+    {
+      "type": "statement",
+      "eyebrow": "RESTAURANT OWNERS",
+      "lines": [
+        "Hungry people",
+        "search first."
+      ],
+      "accent": [
+        "Then they walk in."
+      ],
+      "say": [
+        "Hungry people search first.",
+        "Then they walk in."
+      ]
+    },
+    {
+      "type": "search",
+      "query": "biryani near me",
+      "results": [
+        [
+          "Spice Route Kitchen",
+          "Open now  ·  1.2 km",
+          "★ 4.6"
+        ],
+        [
+          "Malabar Table",
+          "Open now  ·  2.0 km",
+          "★ 4.5"
+        ],
+        [
+          "Royal Biryani House",
+          "Closes 11 pm  ·  2.8 km",
+          "★ 4.4"
+        ]
+      ],
+      "you": {
+        "name": "Your Restaurant",
+        "sub": "Page 2  ·  no website",
+        "rank": 14
+      },
+      "punch": "Is your restaurant on this list?",
+      "say": [
+        "They type: biryani near me.",
+        "Is your restaurant on this list?"
+      ]
+    },
+    {
+      "type": "list",
+      "kind": "good",
+      "title": [
+        "What you get"
+      ],
+      "items": [
+        "A menu Google can read",
+        "Click-to-call & directions",
+        "Fast on every phone"
+      ],
+      "say": [
+        "What you get:",
+        "a menu page Google can actually read,",
+        "click-to-call and directions,",
+        "and fast loading on every phone."
+      ]
+    },
+    {
+      "type": "rank_up",
+      "query": "biryani near me",
+      "results": [
+        [
+          "Spice Route Kitchen",
+          "Open now  ·  1.2 km",
+          "★ 4.6"
+        ],
+        [
+          "Malabar Table",
+          "Open now  ·  2.0 km",
+          "★ 4.5"
+        ],
+        [
+          "Royal Biryani House",
+          "Closes 11 pm  ·  2.8 km",
+          "★ 4.4"
+        ]
+      ],
+      "you": {
+        "name": "Your Restaurant",
+        "sub": "Open now  ·  Menu  ·  Directions",
+        "stars": "★ 4.7",
+        "from_rank": 14
+      },
+      "lines": [
+        "Let's put you"
+      ],
+      "accent": [
+        "at the top."
+      ],
+      "say": [
+        "",
+        "Let's put you at the top."
+      ]
+    },
+    {
+      "type": "cta",
+      "lines": [
+        "Fill more",
+        "tables."
+      ],
+      "button": "DM me “MENU”",
+      "sub": "SEO websites for local businesses",
+      "say": [
+        "Fill more tables.",
+        "DM me the word: menu."
+      ]
+    }
+  ]
+}

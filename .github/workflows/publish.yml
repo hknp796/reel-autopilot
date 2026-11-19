@@ -1,0 +1,58 @@
+name: Publish next Reel
+
+# Posts the oldest Reel marked "approved", then marks it "posted" in the repo.
+# 13:15 UTC = 6:45 pm IST, Mon/Wed/Fri. GitHub can start scheduled runs a few minutes late.
+on:
+  schedule:
+    - cron: "15 13 * * 1,3,5"
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "Post this Reel id instead of the next in line (must be approved)"
+        required: false
+      dry_run:
+        description: "Build only, don't post"
+        type: boolean
+        default: false
+
+concurrency: publish
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - name: Build and post
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_LOGIN: ${{ vars.IG_LOGIN || 'instagram' }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          SUPABASE_BUCKET: ${{ vars.SUPABASE_BUCKET || 'reels' }}
+        shell: bash
+        run: |
+          args=()
+          [ -n "${{ inputs.id }}" ] && args+=(--id "${{ inputs.id }}")
+          [ "${{ inputs.dry_run }}" = "true" ] && args+=(--dry-run)
+          python -m reelgen.publish "${args[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Record what was posted
+        shell: bash
+        run: |
+          if ! git diff --quiet -- reels/; then
+            git config user.name "reel-autopilot"
+            git config user.email "reel-autopilot@users.noreply.github.com"
+            git add reels/
+            git commit -m "Posted $(git diff --cached --name-only | xargs -n1 basename | sed 's/.json//' | paste -sd, -)"
+            git push
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: posted-reel
+          path: out/*.mp4
+          if-no-files-found: ignore
+          retention-days: 30
