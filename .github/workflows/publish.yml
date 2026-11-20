@@ -2,10 +2,11 @@ name: Publish next Reel
 
 # Builds the oldest Reel marked "approved", serves the MP4 from this repo's GitHub Pages
 # site, has Buffer post it to Instagram, then marks it "posted" in the repo.
-# 13:15 UTC = 6:45 pm IST, Mon/Wed/Fri. GitHub can start scheduled runs a few minutes late.
+# 13:15 UTC = 6:45 pm IST, every day. Days with nothing approved post nothing.
+# GitHub can start scheduled runs a few minutes late.
 on:
   schedule:
-    - cron: "15 13 * * 1,3,5"
+    - cron: "15 13 * * *"
   workflow_dispatch:
     inputs:
       id:

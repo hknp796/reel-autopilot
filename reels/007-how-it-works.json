@@ -1,0 +1,73 @@
+{
+  "status": "approved",
+  "voice": "am_michael",
+  "speed": 1.08,
+  "caption": "Getting a website for your business shouldn't be a headache. 🙌\n\nHere's how it works with me:\n1. A quick call about your business\n2. I design and build your site\n3. You go live, set up for Google\n\nDM \"START\" and let's begin.\n\n#websitedesign #localbusiness #seo #smallbusinessindia #webdeveloper #kerala",
+  "scenes": [
+    {
+      "type": "statement",
+      "eyebrow": "BUSINESS OWNERS",
+      "lines": [
+        "Want a website",
+        "without the",
+        "headache?"
+      ],
+      "accent": [
+        "Here's how."
+      ],
+      "say": [
+        "Want a website, without the headache?",
+        "Here's how it works."
+      ]
+    },
+    {
+      "type": "list",
+      "kind": "good",
+      "title": [
+        "How it works"
+      ],
+      "items": [
+        "1. A quick call about you",
+        "2. I design & build it",
+        "3. You go live, Google-ready"
+      ],
+      "say": [
+        "",
+        "One: a quick call about your business.",
+        "Two: I design and build your site.",
+        "Three: you go live, set up for Google."
+      ]
+    },
+    {
+      "type": "list",
+      "kind": "bad",
+      "title": [
+        "What you skip"
+      ],
+      "items": [
+        "Tech jargon",
+        "Endless back-and-forth",
+        "Sites nobody can find"
+      ],
+      "say": [
+        "And what you skip:",
+        "the tech jargon,",
+        "the endless back-and-forth,",
+        "and a website nobody can find."
+      ]
+    },
+    {
+      "type": "cta",
+      "lines": [
+        "Let's get",
+        "you online."
+      ],
+      "button": "DM me “START”",
+      "sub": "SEO websites for local businesses",
+      "say": [
+        "Let's get you online.",
+        "DM me the word: start."
+      ]
+    }
+  ]
+}

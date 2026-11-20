@@ -1,0 +1,126 @@
+{
+  "status": "approved",
+  "voice": "am_michael",
+  "speed": 1.08,
+  "caption": "Your competitor isn't better than you. Their website is. 👀\n\nWhen someone searches for your service, Google shows the businesses with fast, well-built websites first.\n\nI build SEO-ready websites that put local businesses on that list. DM \"RANK\" to get started.\n\n#websitedesign #localbusiness #seo #smallbusinessindia #webdeveloper #kerala #homeservices",
+  "scenes": [
+    {
+      "type": "statement",
+      "eyebrow": "HARD TRUTH",
+      "lines": [
+        "Your competitor",
+        "isn't better",
+        "than you."
+      ],
+      "accent": [
+        "Their website is."
+      ],
+      "say": [
+        "Your competitor isn't better than you.",
+        "Their website is."
+      ]
+    },
+    {
+      "type": "search",
+      "query": "ac repair near me",
+      "results": [
+        [
+          "FrostFix AC Repair",
+          "Open now  ·  1.8 km",
+          "★ 4.8"
+        ],
+        [
+          "ChillPro Services",
+          "Open now  ·  2.6 km",
+          "★ 4.6"
+        ],
+        [
+          "Arctic Home Care",
+          "Open 24 hours  ·  3.9 km",
+          "★ 4.5"
+        ]
+      ],
+      "you": {
+        "name": "Your Business",
+        "sub": "Page 3  ·  no website",
+        "rank": 22
+      },
+      "punch": "Guess who gets the call?",
+      "say": [
+        "Someone searches: AC repair near me.",
+        "Guess who gets the call?"
+      ]
+    },
+    {
+      "type": "list",
+      "kind": "good",
+      "title": [
+        "What gets you",
+        "on that list"
+      ],
+      "items": [
+        "A page for every service",
+        "Your reviews on your site",
+        "Call button on every page",
+        "Fast on every phone"
+      ],
+      "say": [
+        "Here's what gets you on that list:",
+        "a page for every service you offer,",
+        "your reviews, right on your site,",
+        "a call button on every page,",
+        "and fast loading on every phone."
+      ]
+    },
+    {
+      "type": "rank_up",
+      "query": "ac repair near me",
+      "results": [
+        [
+          "FrostFix AC Repair",
+          "Open now  ·  1.8 km",
+          "★ 4.8"
+        ],
+        [
+          "ChillPro Services",
+          "Open now  ·  2.6 km",
+          "★ 4.6"
+        ],
+        [
+          "Arctic Home Care",
+          "Open 24 hours  ·  3.9 km",
+          "★ 4.5"
+        ]
+      ],
+      "you": {
+        "name": "Your Business",
+        "sub": "Open now  ·  Website  ·  Call",
+        "stars": "★ 4.9",
+        "from_rank": 22
+      },
+      "lines": [
+        "Be the one"
+      ],
+      "accent": [
+        "they call."
+      ],
+      "say": [
+        "",
+        "Be the one they call."
+      ]
+    },
+    {
+      "type": "cta",
+      "lines": [
+        "Ready to",
+        "outrank them?"
+      ],
+      "button": "DM me “RANK”",
+      "sub": "SEO websites for local businesses",
+      "say": [
+        "Ready to outrank them?",
+        "DM me the word: rank."
+      ]
+    }
+  ]
+}

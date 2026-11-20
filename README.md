@@ -4,7 +4,7 @@ Turns short JSON scripts into 9:16 Instagram Reels (animated text, mock Google s
 
 ```
 reels/*.json  ──push──▶  Preview workflow renders MP4s  ──you watch, set "approved"──▶
-Publish workflow (Mon/Wed/Fri 6:45 pm IST): build → GitHub Pages → Buffer → Instagram → mark "posted"
+Publish workflow (daily 6:45 pm IST): build → GitHub Pages → Buffer → Instagram → mark "posted"
 ```
 
 Nothing is posted unless you've set its status to `"approved"`.
